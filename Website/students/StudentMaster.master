@@ -1,0 +1,339 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="StudentMaster.master.cs" Inherits="Student_StudentMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport" />
+    <title>Federal Government Girls College, Bwari | Result Evaluation</title>
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="assets/css/app.min.css" />
+    <link rel="stylesheet" href="assets/bundles/summernote/summernote-bs4.css" />
+    <link rel="stylesheet" href="assets/bundles/codemirror/lib/codemirror.css" />
+    <link rel="stylesheet" href="assets/bundles/codemirror/theme/duotone-dark.css" />
+    <link rel="stylesheet" href="assets/bundles/jquery-selectric/selectric.css" />
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/bundles/pretty-checkbox/pretty-checkbox.min.css"/>
+    <link rel="stylesheet" href="assets/css/components.css"/>
+    <!-- Custom style CSS -->
+    <link rel="stylesheet" href="assets/css/custom.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../federal.jpg" />
+<%--    <link rel="stylesheet" href="assets/bundles/datatables/datatables.min.css" />--%>
+    <link href="assets/css/select2.min.css" rel="stylesheet" />
+<%--    <link rel="stylesheet" href="assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css" />--%>
+      <link href="../floating-whatsapp-master/floating-wpp.min.css" rel="stylesheet" />
+    <link href="../floating-whatsapp-master/floating-wpp.css" rel="stylesheet" />
+    <link href="../css/tables/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="../css/tables/datatable/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="../css/tables/datatable/select.dataTables.min.css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        
+        body, html {
+            height: 100%;
+            /* Full height */
+            height: 100%;
+            /* Center and scale the image nicely */
+        }
+
+        ::-webkit-scrollbar {
+            width: 20px;
+        }
+       
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: white;
+            border-radius: 10px;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #834747;
+            }
+    </style>
+    <style type="text/css">
+        <!--
+        a.gflag {
+            vertical-align: middle;
+            font-size: 16px;
+            padding: 1px 0;
+            background-repeat: no-repeat;
+            background-image: url(//gtranslate.net/flags/16.png);
+        }
+
+            a.gflag img {
+                border: 0;
+            }
+
+            a.gflag:hover {
+                background-image: url(//gtranslate.net/flags/16a.png);
+            }
+
+        #goog-gt-tt {
+            display: none !important;
+        }
+
+        .goog-te-banner-frame {
+            display: none !important;
+        }
+
+        .goog-te-menu-value:hover {
+            text-decoration: none !important;
+        }
+
+        body {
+            top: 0 !important;
+        }
+
+        #google_translate_element2 {
+            display: none !important;
+        }
+        -->
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        
+        <div id="app">
+            <div class="main-wrapper main-wrapper-1">
+                <div class="navbar-bg"></div>
+                <nav class="navbar navbar-expand-lg main-navbar sticky">
+                    <div class="form-inline mr-auto">
+                        <ul class="navbar-nav mr-3">
+                            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg
+									collapse-btn"><i data-feather="align-justify"></i></a></li>
+                            <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
+                                <i data-feather="maximize"></i>
+                            </a></li>
+                            
+                            <li>
+                                <div class="form-inline mr-auto">
+                                          <div id="google_translate_element" class="input-sm"></div>
+                                </div>
+                            </li>
+                            <li>
+                                 <div id="WAButton"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="navbar-nav navbar-right">
+
+                     
+                        <li class="dropdown"><a href="#" data-toggle="dropdown"
+                            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                            <img alt="image" runat ="server" id="imgUser" src=""
+                                class="user-img-radious-style"/>
+                            <span class="d-sm-none d-lg-inline-block"></span></a>
+                            <div class="dropdown-menu dropdown-menu-right pullDown">
+                                <div class="dropdown-title">
+                                    <asp:Label ID="lblUser" runat="server" Text="Label"></asp:Label>
+                                </div>
+
+                                <div class="dropdown-divider"></div>
+
+                                <a data-toggle="modal" data-target="#logout" class="dropdown-item has-icon text-danger"><i class="fas fa-sign-out-alt"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="main-sidebar sidebar-style-2">                  
+                    <aside id="sidebar-wrapper">
+                        <div class="sidebar-brand">
+                            <a href="Dashboard">
+                               
+                                <img alt="image" src="federal.jpg" style="width:2em; height:2em"  class="header-logo" />
+                               <span class="logo-mini"><b>F</b>GGS</span>
+                            </a>
+                        </div>
+                        <ul class="sidebar-menu">
+                            <li class="menu-header">General</li>
+                            <li class="dropdown">
+                                <a href="#" class="menu-toggle nav-link has-dropdown"><i
+                                    data-feather="briefcase"></i><span>Settings</span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link" href="Staff-Dashboard">View Profile</a></li>
+                                    <li><a class="nav-link" href="Staff-Change-Password">Change Password</a></li>
+                                </ul>
+                            </li>                        
+                            <li class="dropdown ">
+                                <a href="student-Dashboard" class="nav-link"><i class=" fa fa-pen"></i><span>My Result</span></a>
+                             
+                            </li>                        
+                        </ul>
+                    </aside>
+                </div>
+                <!-- Main Content -->
+                <div class="main-content">
+                    <asp:Panel ID="pnlAlert" runat="server" CssClass="alert alert-danger" Visible="false">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <span id="spIcon" runat="server"></span>
+                        <asp:Label ID="lblMsg" CssClass="text-white " runat="server" Text=""></asp:Label>
+                    </asp:Panel>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                     
+                </div>
+                <footer class="main-footer">
+                  
+                 
+
+                    <div class=" footer-right">
+                         
+                        <a href="#">Federal Government Girls College, Bwari</a>
+                    </div>
+                    <div class="footer-right">
+                    </div>
+                </footer>
+            </div>
+        </div>
+          <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabels"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabels">Log Out</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <asp:Label ID="Label1" CssClass ="text-danger " runat="server" Text="Are you sure that you want to log out?"></asp:Label>
+              </div>
+              <div class="modal-footer bg-whitesmoke br">
+                <button type="button" class="btn btn-danger" runat ="server" onserverclick ="SignOut"><i class=" fa fa-sign-out-alt"></i>&nbsp Logout</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- General JS Scripts -->
+        <script src="assets/js/app.min.js"></script>
+        <!-- JS Libraies -->
+        <script src="assets/bundles/datatables/datatables.min.js"></script>
+        <script src="assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+        <script src="assets/bundles/jquery-ui/jquery-ui.min.js"></script>
+        <!-- Page Specific JS File -->
+        <script src="assets/js/page/datatables.js"></script>
+        <!-- Template JS File -->
+        <script src="assets/js/scripts.js"></script>
+        <!-- Custom JS File -->
+        <script src="assets/js/custom.js"></script>
+        <!-- JS Libraies -->
+        <script src="assets/bundles/apexcharts/apexcharts.min.js"></script>
+        <script src="assets/bundles/summernote/summernote-bs4.js"></script>
+        <script src="assets/bundles/codemirror/lib/codemirror.js"></script>
+        <script src="assets/bundles/codemirror/mode/javascript/javascript.js"></script>
+        <script src="assets/bundles/jquery-selectric/jquery.selectric.min.js"></script>
+        <script src="assets/bundles/ckeditor/ckeditor.js"></script>
+        <script src="assets/bundles/prism/prism.js"></script>
+        <script src="ckeditor/ckeditor.js"></script>
+        <script src="assets/js/page/ckeditor.js"></script>
+        <script src="assets/counter.js"></script>
+        <script src="js/select2.min.js"></script>
+        <script src="assets/js/page/portfolio.js"></script>
+        <script src="floating-whatsapp-master/floating-wpp.js"></script>
+        <script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
+<script type="IN/Share" data-url="https://www.linkedin.com"></script>
+         <%-- <script type="text/javascript">
+            $(function () {
+                $('#WAButton').floatingWhatsApp({
+                    phone: '+2347031268439', //WhatsApp Business phone number
+                    headerTitle: 'Chat with us on our AI Chatbot!', //Popup Title
+                    popupMessage: 'Welcome to Veritas University Result Processing, how can we help you?', //Popup Message
+                    showPopup: true, //Enables popup display
+                    buttonImage: '<img src="img/VeritasPngs.png" />', //Button Image
+                    headerColor: '#28a745', //Custom header color
+                    backgroundColor: 'transparent', //Custom background button color
+                    position: "left" //Position: left | right
+
+                });
+            });
+        </script>--%>
+          <script>
+               function isNumber(evt, element) {
+
+                   var charCode = (evt.which) ? evt.which : event.keyCode
+
+                   if (
+                       (charCode != 45 || $(element).val().indexOf('-') != -1) &&      // “-” CHECK MINUS, AND ONLY ONE.
+                       (charCode != 46 || $(element).val().indexOf('.') != -1) &&      // “.” CHECK DOT, AND ONLY ONE.
+                       (charCode < 48 || charCode > 57))
+                       return false;
+
+                   return true;
+               }
+           </script>
+        <script type="text/javascript">
+            var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+
+            ( function () {
+                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                s1.async = true;
+                s1.src = 'https://embed.tawk.to/5e9cb58835bcbb0c9ab2b7ae/default';
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin', '*');
+                s0.parentNode.insertBefore(s1, s0);
+            })();
+        </script>
+    <script>
+        $('.decimal').keypress(function (event) {
+            return isNumber(event, this)
+        });
+    </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".select2").select2();
+                $('.c').DataTable({
+                    //dom: 'Bfrtip',
+                    //buttons: [
+                    //  'copy', 'csv', 'excel', 'pdf', 'print'
+                    //],
+                    "columnDefs": [
+          { "sortable": false, "targets": [2, 3] }
+                    ]
+                });
+            });
+        </script>
+        <script>
+            $('.counters').each(function () {
+                $(this).prop('Counter', 0).animate({
+                    Counter: $(this).text()
+                },
+            {
+                duration: 9500,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+            });
+        </script>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+            }
+        </script>
+
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <script src="assets/js/index.js"></script>
+        <!--Start of Tawk.to Script-->
+
+      
+
+    </form>
+</body>
+</html>

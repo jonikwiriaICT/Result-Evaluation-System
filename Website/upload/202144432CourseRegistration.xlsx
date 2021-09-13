@@ -1,0 +1,765 @@
+﻿
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta charset="UTF-8" /><meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport" /><title>
+	Result Processing | Veritas University
+</title>
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="assets/css/app.min.css" /><link rel="stylesheet" href="assets/bundles/summernote/summernote-bs4.css" /><link rel="stylesheet" href="assets/bundles/codemirror/lib/codemirror.css" /><link rel="stylesheet" href="assets/bundles/codemirror/theme/duotone-dark.css" /><link rel="stylesheet" href="assets/bundles/jquery-selectric/selectric.css" />
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" /><link rel="stylesheet" href="assets/bundles/pretty-checkbox/pretty-checkbox.min.css" /><link rel="stylesheet" href="assets/css/components.css" />
+    <!-- Custom style CSS -->
+    <link rel="stylesheet" href="assets/css/custom.css" /><link rel="shortcut icon" type="image/x-icon" href="img/veritasPng.png" /><link href="assets/css/select2.min.css" rel="stylesheet" /><link href="floating-whatsapp-master/floating-wpp.min.css" rel="stylesheet" /><link href="floating-whatsapp-master/floating-wpp.css" rel="stylesheet" /><link href="css/tables/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" /><link href="css/tables/datatable/jquery.dataTables.min.css" rel="stylesheet" /><link href="css/tables/datatable/select.dataTables.min.css" rel="stylesheet" />
+
+    <style>
+        
+        body, html {
+            height: 100%;
+            /* Full height */
+            height: 100%;
+            /* Center and scale the image nicely */
+        }
+
+        ::-webkit-scrollbar {
+            width: 20px;
+        }
+       
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey;
+            border-radius: 10px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: white;
+            border-radius: 10px;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #28a745;
+            }
+    </style>
+    <style type="text/css">
+        <!--
+        a.gflag {
+            vertical-align: middle;
+            font-size: 16px;
+            padding: 1px 0;
+            background-repeat: no-repeat;
+            background-image: url(//gtranslate.net/flags/16.png);
+        }
+
+            a.gflag img {
+                border: 0;
+            }
+
+            a.gflag:hover {
+                background-image: url(//gtranslate.net/flags/16a.png);
+            }
+
+        #goog-gt-tt {
+            display: none !important;
+        }
+
+        .goog-te-banner-frame {
+            display: none !important;
+        }
+
+        .goog-te-menu-value:hover {
+            text-decoration: none !important;
+        }
+
+        body {
+            top: 0 !important;
+        }
+
+        #google_translate_element2 {
+            display: none !important;
+        }
+        -->
+    </style>
+</head>
+<body>
+    <form method="post" action="./Course-Registration" id="form1" enctype="multipart/form-data">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTEyMTc3Nzc3Mw8WAh4TVmFsaWRhdGVSZXF1ZXN0TW9kZQIBFgJmD2QWAgIDDxYCHgdlbmN0eXBlBRNtdWx0aXBhcnQvZm9ybS1kYXRhFggCBA8WAh4Dc3JjBQ1pbWcvam9objEuanBnZAIGDw8WAh4EVGV4dAUZSk9ITldFTkRZRVpFQUxBQEdNQUlMLkNPTWRkAggPDxYGHghDc3NDbGFzcwUlYWxlcnQgYWxlcnQtc3VjY2VzcyBhbGVydC1kaXNtaXNzaWJsZR4EXyFTQgICHgdWaXNpYmxlZ2QWBAIBDxYCHglpbm5lcmh0bWwFJDxpIGNsYXNzPSdmYSBmYS1jaGVjay1jaXJjbGUtbyc+PC9pPmQCAw8PFgIfAwUeUmVjb3JkIGV4ZWN1dGVkIHN1Y2Nlc3NmdWxseSAuZGQCCg9kFgQCAQ8WAh8GaBYCAgUPZBYEAgEPFgIeBVZhbHVlZWQCAw8QDxYGHg5EYXRhVmFsdWVGaWVsZAUEQ29kZR4NRGF0YVRleHRGaWVsZAUERGVzYx4LXyFEYXRhQm91bmRnZBAVAwxBbGwgU3R1ZGVudHMaVlVHL0NTQy8xOC8xMTExOiAgQkIgQkIgQkIdVlVHL0NTQy8xOC8yMjMzREZHR0dHOiAgRyBHIEcVAwEwD1ZVRy9DU0MvMTgvMTExMRVWVUcvQ1NDLzE4LzIyMzNERkdHR0cUKwMDZ2dnFgECAWQCAw8WAh8GZxYMAg0PEA8WBh8JBQRDb2RlHwoFBERlc2MfC2dkEBUCC0FsbCBDb3Vyc2VzEENTQzE5ODogICAgIDFISEgVAgEwBTEwMDExFCsDAmdnFgECAWQCDw8QDxYGHwkFBENvZGUfCgUERGVzYx8LZ2QQFYoBDEFsbCBTZXNzaW9ucwkyMDAxLzIwMDIJMjAwMi8yMDAzCTIwMDMvMjAwNAkyMDA0LzIwMDUJMjAwNS8yMDA2CTIwMDYvMjAwNwkyMDA3LzIwMDgJMjAwOC8yMDA5CTIwMDkvMjAxMAkyMDEwLzIwMTEJMjAxMS8yMDEyCTIwMTIvMjAxMwkyMDEzLzIwMTQJMjAxNC8yMDE1CTIwMTUvMjAxNgkyMDE2LzIwMTcJMjAxNy8yMDE4CTIwMTgvMjAxOQkyMDE5LzIwMjAJMjAyMC8yMDIxCTIwMjEvMjAyMgkyMDIyLzIwMjMJMjAyMy8yMDI0CTIwMjQvMjAyNQkyMDI1LzIwMjYJMjAyNi8yMDI3CTIwMjcvMjAyOAkyMDI4LzIwMjkJMjAyOS8yMDMwCTIwMzAvMjAzMQkyMDMxLzIwMzIJMjAzMi8yMDMzCTIwMzMvMjAzNAkyMDM0LzIwMzUJMjAzNS8yMDM2CTIwMzYvMjAzNwkyMDM3LzIwMzgJMjAzOC8yMDM5CTIwMzkvMjA0MAkyMDQwLzIwNDEJMjA0MS8yMDQyCTIwNDIvMjA0MwkyMDQzLzIwNDQJMjA0NC8yMDQ1CTIwNDUvMjA0NgkyMDQ2LzIwNDcJMjA0Ny8yMDQ4CTIwNDgvMjA0OQkyMDQ5LzIwNTAJMjA1MC8yMDUxCTIwNTEvMjA1MgkyMDUyLzIwNTMJMjA1My8yMDU0CTIwNTQvMjA1NQkyMDU1LzIwNTYJMjA1Ni8yMDU3CTIwNTcvMjA1OAkyMDU4LzIwNTkJMjA1OS8yMDYwCTIwNjAvMjA2MQkyMDYxLzIwNjIJMjA2Mi8yMDYzCTIwNjMvMjA2NAkyMDY0LzIwNjUJMjA2NS8yMDY2CTIwNjYvMjA2NwkyMDY3LzIwNjgJMjA2OC8yMDY5CTIwMDAvMjAwMQkyMDAxLzIwMDIJMjAwMi8yMDAzCTIwMDMvMjAwNAkyMDA0LzIwMDUJMjAwNS8yMDA2CTIwMDYvMjAwNwkyMDA3LzIwMDgJMjAwOC8yMDA5CTIwMDkvMjAxMAkyMDEwLzIwMTEJMjAxMS8yMDEyCTIwMTIvMjAxMwkyMDEzLzIwMTQJMjAxNC8yMDE1CTIwMTUvMjAxNgkyMDE2LzIwMTcJMjAxNy8yMDE4CTIwMTgvMjAxOQkyMDE5LzIwMjAJMjAyMC8yMDIxCTIwMjEvMjAyMgkyMDIyLzIwMjMJMjAyMy8yMDI0CTIwMjQvMjAyNQkyMDI1LzIwMjYJMjAyNi8yMDI3CTIwMjcvMjAyOAkyMDI4LzIwMjkJMjAyOS8yMDMwCTIwMzAvMjAzMQkyMDMxLzIwMzIJMjAzMi8yMDMzCTIwMzMvMjAzNAkyMDM0LzIwMzUJMjAzNS8yMDM2CTIwMzYvMjAzNwkyMDM3LzIwMzgJMjAzOC8yMDM5CTIwMzkvMjA0MAkyMDQwLzIwNDEJMjA0MS8yMDQyCTIwNDIvMjA0MwkyMDQzLzIwNDQJMjA0NC8yMDQ1CTIwNDUvMjA0NgkyMDQ2LzIwNDcJMjA0Ny8yMDQ4CTIwNDgvMjA0OQkyMDQ5LzIwNTAJMjA1MC8yMDUxCTIwNTEvMjA1MgkyMDUyLzIwNTMJMjA1My8yMDU0CTIwNTQvMjA1NQkyMDU1LzIwNTYJMjA1Ni8yMDU3CTIwNTcvMjA1OAkyMDU4LzIwNTkJMjA1OS8yMDYwCTIwNjAvMjA2MQkyMDYxLzIwNjIJMjA2Mi8yMDYzCTIwNjMvMjA2NAkyMDY0LzIwNjUJMjA2NS8yMDY2CTIwNjYvMjA2NwkyMDY3LzIwNjgJMjA2OC8yMDY5FYoBATABMwE0ATUBNgE3ATgBOQIxMAIxMQIxMgIxMwIxNAIxNQIxNgIxNwIxOAIxOQIyMAIyMQIyMgIyMwIyNAIyNQIyNgIyNwIyOAIyOQIzMAIzMQIzMgIzMwIzNAIzNQIzNgIzNwIzOAIzOQI0MAI0MQI0MgI0MwI0NAI0NQI0NgI0NwI0OAI0OQI1MAI1MQI1MgI1MwI1NAI1NQI1NgI1NwI1OAI1OQI2MAI2MQI2MgI2MwI2NAI2NQI2NgI2NwI2OAI2OQI3MAI3MQI3MgI3MwI3NAI3NQI3NgI3NwI3OAI3OQI4MAI4MQI4MgI4MwI4NAI4NQI4NgI4NwI4OAI4OQI5MAI5MQI5MgI5MwI5NAI5NQI5NgI5NwI5OAI5OQMxMDADMTAxAzEwMgMxMDMDMTA0AzEwNQMxMDYDMTA3AzEwOAMxMDkDMTEwAzExMQMxMTIDMTEzAzExNAMxMTUDMTE2AzExNwMxMTgDMTE5AzEyMAMxMjEDMTIyAzEyMwMxMjQDMTI1AzEyNgMxMjcDMTI4AzEyOQMxMzADMTMxAzEzMgMxMzMDMTM0AzEzNQMxMzYDMTM3AzEzOAMxMzkUKwOKAWdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZxYBAgFkAhEPEA8WBh8JBQRDb2RlHwoFBERlc2MfC2dkEBUFDUFsbCBTZW1lc3RlcnMMMVNUIFNFTUVTVEVSDDJORCBTRU1FU1RFUgMyMDAFNzg4IFYVBQEwATEBMwE0ATUUKwMFZ2dnZ2cWAQIBZAITDxAPFgYfCQUEQ29kZR8KBQREZXNjHwtnZBAVBQpBbGwgTGV2ZWxzAzEwMAMyMDADMzAwAzQwMBUFATABMQEyATMBNBQrAwVnZ2dnZxYBAgFkAhcPPCsAEQMADxYEHwtnHgtfIUl0ZW1Db3VudAIBZAEQFgAWABYADBQrAA0WCB4ETmFtZQUJUm93TnVtYmVyHgpJc1JlYWRPbmx5aB4EVHlwZRkpWVN5c3RlbS5JbnQ2NCwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5HglEYXRhRmllbGQFCVJvd051bWJlchYIHw0FBVJlY0lEHw5oHw8ZKwQfEAUFUmVjSUQWCB8NBQpEZXBhcnRtZW50Hw5oHw8ZKwIfEAUKRGVwYXJ0bWVudBYIHw0FB1Nlc3Npb24fDmgfDxkrAh8QBQdTZXNzaW9uFggfDQUIU2VtZXN0ZXIfDmgfDxkrAh8QBQhTZW1lc3RlchYIHw0FBUxldmVsHw5oHw8ZKwIfEAUFTGV2ZWwWCB8NBQhNYXRyaWNObx8OaB8PGSsCHxAFCE1hdHJpY05vFggfDQUNU3R1ZGVudCBOYW1lcx8OaB8PGSsCHxAFDVN0dWRlbnQgTmFtZXMWCB8NBQtDb3Vyc2UgTmFtZR8OaB8PGSsCHxAFC0NvdXJzZSBOYW1lFggfDQULQ291cnNlIENvZGUfDmgfDxkrAh8QBQtDb3Vyc2UgQ29kZRYIHw0FC0NvdXJzZSBVbml0Hw5oHw8ZKwIfEAULQ291cnNlIFVuaXQWCB8NBQxDcmVhdGVkIERhdGUfDmgfDxkpXFN5c3RlbS5EYXRlVGltZSwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5HxAFDENyZWF0ZWQgRGF0ZRYIHw0FDENyZWF0ZWQgVGltZR8OaB8PGSlcU3lzdGVtLlRpbWVTcGFuLCBtc2NvcmxpYiwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkfEAUMQ3JlYXRlZCBUaW1lFgJmD2QWBmYPDxYCHgxUYWJsZVNlY3Rpb24LKilTeXN0ZW0uV2ViLlVJLldlYkNvbnRyb2xzLlRhYmxlUm93U2VjdGlvbgBkZAIBD2QWHmYPZBYCAgEPDxYCHg9Db21tYW5kQXJndW1lbnQFATBkZAIBD2QWAgIBDw8WAh8SBQEwZGQCAw8PFgIfAwUBMWRkAgQPDxYCHwMFATFkZAIFDw8WAh8DBStDb21wdXRlciBTY2llbmNlIGFuZCBJbmZvcm1hdGlvbiBUZWNobm9sb2d5ZGQCBg8PFgIfAwUJMjAwMS8yMDAyZGQCBw8PFgIfAwUMMVNUIFNFTUVTVEVSZGQCCA8PFgIfAwUDMTAwZGQCCQ8PFgIfAwUPVlVHL0NTQy8xOC8xMTExZGQCCg8PFgIfAwUIQkIgQkIgQkJkZAILDw8WAh8DBQQxSEhIZGQCDA8PFgIfAwUGQ1NDMTk4ZGQCDQ8PFgIfAwUBMmRkAg4PDxYCHwMFFDQvNC8yMDIxIDEyOjAwOjAwIEFNZGQCDw8PFgIfAwUQMDQ6MjA6NDcuODEwMDAwMGRkAgIPDxYCHwZoZGQCGQ88KwAJAQAPFgQeCERhdGFLZXlzFgAfDAIBZBYCZg9kFgICAQ8PFgYfAwUBMR8SBQExHgdFbmFibGVkaGRkGAIFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYBBTVjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJFRhYmxlUmVzdWx0JGN0bDAyJGNoa1Jlc3VsdAUlY3RsMDAkQ29udGVudFBsYWNlSG9sZGVyMSRUYWJsZVJlc3VsdA88KwAMAQgCAWQ4WnfDLHq/dD0i7Et6tPErflZzmH+0DLzhxKL7/GIIHQ==" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=Rs1R1UkYrICg2J6VOI9ciVcLAPiVlKnyuYP5iI2ObH1MD6QPzH8fca_tvbDnwbygpnrbNNX8JVodgv_3O6-H-2mpO_zhqdnCO7MRzSNzeew1&amp;t=637034139885412945" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=SXl023G7s6dcXJmr7mE9tc5u6HLyptrPnbNOZIb6qbhAnKAAXYoHFi9Yg-IkNUGvrKN2greOwcjydawcq435jQOLswZJKjCKIgJiWNYO_EEF8X3HahOsV53NmrP800Asa9f14EzWLhKxi-lr6TcSKi7YJyfFVURpGVuDbUe8POyzSKL37k64rxTBzIk-mXvF0&amp;t=ffffffffcd368728" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<script src="/ScriptResource.axd?d=TUGIqaNrYm6xeKW4eWhg5L2B78GC70BmhqJsYggUNdg-sc4Nro30eNpZ88ICx5QXKVRLGuWLc8AodDL5lnT1A5XTAc8rlhwU-zBi00PnoiLTOgAsVYr43qRqb_vKcfcYpRrUXzkUSQ-TKhMsUdQgHcC4-lYN-jrPN_SonCnBl11f3DsIA45WEjJ6gkbPbm4b0&amp;t=ffffffffcd368728" type="text/javascript"></script>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+        <div class="loader">
+            
+        </div>
+        <div id="app">
+            <div class="main-wrapper main-wrapper-1">
+                <div class="navbar-bg"></div>
+                <nav class="navbar navbar-expand-lg main-navbar sticky">
+                    <div class="form-inline mr-auto">
+                        <ul class="navbar-nav mr-3">
+                            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg
+									collapse-btn"><i data-feather="align-justify"></i></a></li>
+                            <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
+                                <i data-feather="maximize"></i>
+                            </a></li>
+                            <li>
+                                <div class="form-inline mr-auto">
+                                          <div id="google_translate_element" class="input-sm"></div>
+                                </div>
+                            </li>
+                            <li>
+                                 <div id="WAButton"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="navbar-nav navbar-right">
+
+                     
+                        <li class="dropdown"><a href="#" data-toggle="dropdown"
+                            class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                            <img src="img/john1.jpg" id="imgUser" alt="image" class="user-img-radious-style" />
+                            <span class="d-sm-none d-lg-inline-block"></span></a>
+                            <div class="dropdown-menu dropdown-menu-right pullDown">
+                                <div class="dropdown-title">
+                                    <span id="lblUser">JOHNWENDYEZEALA@GMAIL.COM</span>
+                                </div>
+
+                                <div class="dropdown-divider"></div>
+
+                                <a data-toggle="modal" data-target="#logout" class="dropdown-item has-icon text-danger"><i class="fas fa-sign-out-alt"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="main-sidebar sidebar-style-2">
+                     
+                    <aside id="sidebar-wrapper">
+                        <div class="sidebar-brand">
+                            <a href="Dashboard">
+                                <img alt="image" src="img/veritasPng.png" style="width: 2em; height: 2em" class="header-logo" />
+                                <span
+                                    class="logo-name text-small">Result </span>
+                            </a>
+                        </div>
+                        <ul class="sidebar-menu">
+
+
+                            <li class="dropdown ">
+                                <a href="Dashboard" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+                            </li>
+                            <li class="menu-header">General</li>
+                            <li class="dropdown">
+                                <a href="#" class="menu-toggle nav-link has-dropdown"><i
+                                    data-feather="briefcase"></i><span>Settings</span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link" href="Staff-Profile">View Profile</a></li>
+                                    <li><a class="nav-link" href="Change-Password">Change Password</a></li>
+                                </ul>
+                            </li>
+                           
+                            <li class="dropdown ">
+                                <a href="Faculty" class="nav-link"><i class="fa fa-school"></i><span>Faculty</span></a>
+                              
+                            </li>
+                            <li class="dropdown ">
+                                <a href="Department" class="nav-link"><i class="fa fa-home"></i><span>Department</span></a>
+                              
+                            </li>
+                             <li class="dropdown ">
+                                <a href="Program" class="nav-link"><i class="fa fa-certificate"></i><span>Program</span></a>                             
+                            </li>
+                              <li class="dropdown ">
+                                <a href="Semester" class="nav-link"><i class="fa fa-pen"></i><span>Semester</span></a>                             
+                            </li>
+                            <li class="dropdown ">
+                                <a href="Level" class="nav-link"><i class="fa fa-pen-fancy"></i><span>Level</span></a>                             
+                            </li>
+                             <li class="dropdown ">
+                                <a href="Course-Type" class="nav-link"><i class="fa fa-book-reader"></i><span>Course Type</span></a>                             
+                            </li>
+                             <li class="dropdown ">
+                                <a href="Course" class="nav-link"><i class="fa fa-book"></i><span>Course</span></a>                             
+                            </li>
+                              <li class="dropdown ">
+                                <a href="Session" class="nav-link"><i class="fa fa-address-book"></i><span>Session</span></a>                             
+                            </li>
+                             <li class="dropdown ">
+                                <a href="Staff" class="nav-link"><i class="fa fa-users"></i><span>Staff</span></a>                             
+                            </li>
+                            <li class="dropdown ">
+                                <a href="Assign-Course" class="nav-link"><i class="fa fa-briefcase"></i><span>Assign Courses</span></a>                             
+                            </li>
+                               <li class="dropdown ">
+                                <a href="User-Management" class="nav-link"><i class=" fa fa-user"></i><span>User Management</span></a>                             
+                            </li>
+                              <li class="dropdown ">
+                                <a href="Vice-Chancellor" class="nav-link"><i class="fa fa-user-shield"></i><span>Vice Chancellor</span></a>                             
+                            </li>
+                              <li class="dropdown ">
+                                <a href="Registrar" class="nav-link"><i class="fa fa-user-edit"></i><span>Registrar</span></a>                             
+                            </li>
+                             <li class="dropdown ">
+                                <a href="Dean-Of-Faculty" class="nav-link"><i class="fa fa-user-cog"></i><span>Dean of Faculty</span></a>                             
+                            </li>
+                             <li class="dropdown ">
+                                <a href="Head-Of-Department" class="nav-link"><i class="fa fa-user-clock"></i><span>Head of Department</span></a>                             
+                            </li>
+                             <li class="dropdown ">
+                                <a href="exam-officer" class="nav-link"><i class="fa fa-user-astronaut"></i><span>Exam Officer</span></a>                             
+                            </li>
+                            <li class="dropdown ">
+                                <a href="Student" class="nav-link"><i class="fa fa-user-graduate"></i><span>Student</span></a>                             
+                            </li>
+                            <li class="dropdown ">
+                                <a href="Course-Registration" class="nav-link"><i class="fa fa-book-medical"></i><span>Course Registration</span></a>                             
+                            </li>
+
+                             <li class="dropdown ">
+                                <a href="Sms-Settings" class="nav-link"><i class="fa fa-chart-area "></i><span>SMS Settings</span></a>
+                              
+                            </li>
+                             <li class="dropdown ">
+                                <a href="Audit-Trail" class="nav-link"><i class="fa fa-history "></i><span>Audit Trail</span></a>
+                              
+                            </li>
+                      
+                         
+
+
+                        </ul>
+                    </aside>
+                </div>
+                <!-- Main Content -->
+                <div class="main-content">
+                    <div id="pnlAlert" class="alert alert-success alert-dismissible">
+	
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <span id="spIcon"><i class='fa fa-check-circle-o'></i></span>
+                        <span id="lblMsg" class="text-white ">Record executed successfully .</span>
+                    
+</div>
+                    
+    
+    <div id="ContentPlaceHolder1_View" class="row">
+        <div class="col-12 col-sm-12 col-lg-12">
+            <div class="card ">
+                <div class="card-header">
+                    <h4>Course Registration</h4>
+                    <div class="card-header-action">
+                        <div class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="btn btn-success dropdown-toggle">Action</a>
+                            <div class="dropdown-menu">
+                                <a id="ContentPlaceHolder1_lnkAddNewRecord" class="dropdown-item has-icon" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$lnkAddNewRecord&#39;,&#39;&#39;)"><i class="fas fa-plus"></i>Add New Record</a>
+                               <a id="ContentPlaceHolder1_lnkDownloadTemplate" class="dropdown-item has-icon" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$lnkDownloadTemplate&#39;,&#39;&#39;)"><i class=" fa fa-download"></i>Download Template</a>
+
+                                 <a id="ContentPlaceHolder1_lnkExportToExcel" class="dropdown-item has-icon" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$lnkExportToExcel&#39;,&#39;&#39;)"><i class=" fa fa-eye"></i>Export To Excel</a>
+                                <div class="dropdown-divider"></div>
+                                <a id="ContentPlaceHolder1_lnkCheck" class="dropdown-item has-icon" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$lnkCheck&#39;,&#39;&#39;)"><i class=" fa fa-check"></i>Check All Rows</a>
+                                <a id="ContentPlaceHolder1_lnkDeleteCheckedRows" class="dropdown-item has-icon" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$lnkDeleteCheckedRows&#39;,&#39;&#39;)"><i class=" fa fa-trash-restore"></i>Delete Checked Rows</a>
+                                <a id="ContentPlaceHolder1_lnkDelete" class="dropdown-item has-icon" data-toggle="modal" data-target="#DeleteAllRecord" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$lnkDelete&#39;,&#39;&#39;)"><i class=" fa fa-trash"></i>Delete Record</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Select by Course</label>
+                                <select name="ctl00$ContentPlaceHolder1$ddlCourse" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$ddlCourse\&#39;,\&#39;\&#39;)&#39;, 0)" id="ContentPlaceHolder1_ddlCourse" class="form-control select2">
+	<option value="0">All Courses</option>
+	<option selected="selected" value="10011">CSC198:     1HHH</option>
+
+</select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Select by Session</label>
+                                <select name="ctl00$ContentPlaceHolder1$ddlSession" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$ddlSession\&#39;,\&#39;\&#39;)&#39;, 0)" id="ContentPlaceHolder1_ddlSession" class="form-control select2">
+	<option value="0">All Sessions</option>
+	<option selected="selected" value="3">2001/2002</option>
+	<option value="4">2002/2003</option>
+	<option value="5">2003/2004</option>
+	<option value="6">2004/2005</option>
+	<option value="7">2005/2006</option>
+	<option value="8">2006/2007</option>
+	<option value="9">2007/2008</option>
+	<option value="10">2008/2009</option>
+	<option value="11">2009/2010</option>
+	<option value="12">2010/2011</option>
+	<option value="13">2011/2012</option>
+	<option value="14">2012/2013</option>
+	<option value="15">2013/2014</option>
+	<option value="16">2014/2015</option>
+	<option value="17">2015/2016</option>
+	<option value="18">2016/2017</option>
+	<option value="19">2017/2018</option>
+	<option value="20">2018/2019</option>
+	<option value="21">2019/2020</option>
+	<option value="22">2020/2021</option>
+	<option value="23">2021/2022</option>
+	<option value="24">2022/2023</option>
+	<option value="25">2023/2024</option>
+	<option value="26">2024/2025</option>
+	<option value="27">2025/2026</option>
+	<option value="28">2026/2027</option>
+	<option value="29">2027/2028</option>
+	<option value="30">2028/2029</option>
+	<option value="31">2029/2030</option>
+	<option value="32">2030/2031</option>
+	<option value="33">2031/2032</option>
+	<option value="34">2032/2033</option>
+	<option value="35">2033/2034</option>
+	<option value="36">2034/2035</option>
+	<option value="37">2035/2036</option>
+	<option value="38">2036/2037</option>
+	<option value="39">2037/2038</option>
+	<option value="40">2038/2039</option>
+	<option value="41">2039/2040</option>
+	<option value="42">2040/2041</option>
+	<option value="43">2041/2042</option>
+	<option value="44">2042/2043</option>
+	<option value="45">2043/2044</option>
+	<option value="46">2044/2045</option>
+	<option value="47">2045/2046</option>
+	<option value="48">2046/2047</option>
+	<option value="49">2047/2048</option>
+	<option value="50">2048/2049</option>
+	<option value="51">2049/2050</option>
+	<option value="52">2050/2051</option>
+	<option value="53">2051/2052</option>
+	<option value="54">2052/2053</option>
+	<option value="55">2053/2054</option>
+	<option value="56">2054/2055</option>
+	<option value="57">2055/2056</option>
+	<option value="58">2056/2057</option>
+	<option value="59">2057/2058</option>
+	<option value="60">2058/2059</option>
+	<option value="61">2059/2060</option>
+	<option value="62">2060/2061</option>
+	<option value="63">2061/2062</option>
+	<option value="64">2062/2063</option>
+	<option value="65">2063/2064</option>
+	<option value="66">2064/2065</option>
+	<option value="67">2065/2066</option>
+	<option value="68">2066/2067</option>
+	<option value="69">2067/2068</option>
+	<option value="70">2068/2069</option>
+	<option value="71">2000/2001</option>
+	<option value="72">2001/2002</option>
+	<option value="73">2002/2003</option>
+	<option value="74">2003/2004</option>
+	<option value="75">2004/2005</option>
+	<option value="76">2005/2006</option>
+	<option value="77">2006/2007</option>
+	<option value="78">2007/2008</option>
+	<option value="79">2008/2009</option>
+	<option value="80">2009/2010</option>
+	<option value="81">2010/2011</option>
+	<option value="82">2011/2012</option>
+	<option value="83">2012/2013</option>
+	<option value="84">2013/2014</option>
+	<option value="85">2014/2015</option>
+	<option value="86">2015/2016</option>
+	<option value="87">2016/2017</option>
+	<option value="88">2017/2018</option>
+	<option value="89">2018/2019</option>
+	<option value="90">2019/2020</option>
+	<option value="91">2020/2021</option>
+	<option value="92">2021/2022</option>
+	<option value="93">2022/2023</option>
+	<option value="94">2023/2024</option>
+	<option value="95">2024/2025</option>
+	<option value="96">2025/2026</option>
+	<option value="97">2026/2027</option>
+	<option value="98">2027/2028</option>
+	<option value="99">2028/2029</option>
+	<option value="100">2029/2030</option>
+	<option value="101">2030/2031</option>
+	<option value="102">2031/2032</option>
+	<option value="103">2032/2033</option>
+	<option value="104">2033/2034</option>
+	<option value="105">2034/2035</option>
+	<option value="106">2035/2036</option>
+	<option value="107">2036/2037</option>
+	<option value="108">2037/2038</option>
+	<option value="109">2038/2039</option>
+	<option value="110">2039/2040</option>
+	<option value="111">2040/2041</option>
+	<option value="112">2041/2042</option>
+	<option value="113">2042/2043</option>
+	<option value="114">2043/2044</option>
+	<option value="115">2044/2045</option>
+	<option value="116">2045/2046</option>
+	<option value="117">2046/2047</option>
+	<option value="118">2047/2048</option>
+	<option value="119">2048/2049</option>
+	<option value="120">2049/2050</option>
+	<option value="121">2050/2051</option>
+	<option value="122">2051/2052</option>
+	<option value="123">2052/2053</option>
+	<option value="124">2053/2054</option>
+	<option value="125">2054/2055</option>
+	<option value="126">2055/2056</option>
+	<option value="127">2056/2057</option>
+	<option value="128">2057/2058</option>
+	<option value="129">2058/2059</option>
+	<option value="130">2059/2060</option>
+	<option value="131">2060/2061</option>
+	<option value="132">2061/2062</option>
+	<option value="133">2062/2063</option>
+	<option value="134">2063/2064</option>
+	<option value="135">2064/2065</option>
+	<option value="136">2065/2066</option>
+	<option value="137">2066/2067</option>
+	<option value="138">2067/2068</option>
+	<option value="139">2068/2069</option>
+
+</select>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Select by Semester</label>
+                                <select name="ctl00$ContentPlaceHolder1$ddlSemester" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$ddlSemester\&#39;,\&#39;\&#39;)&#39;, 0)" id="ContentPlaceHolder1_ddlSemester" class="form-control select2">
+	<option value="0">All Semesters</option>
+	<option selected="selected" value="1">1ST SEMESTER</option>
+	<option value="3">2ND SEMESTER</option>
+	<option value="4">200</option>
+	<option value="5">788 V</option>
+
+</select>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Select by Level</label>
+                                <select name="ctl00$ContentPlaceHolder1$ddlLevel" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$ddlLevel\&#39;,\&#39;\&#39;)&#39;, 0)" id="ContentPlaceHolder1_ddlLevel" class="form-control select2">
+	<option value="0">All Levels</option>
+	<option selected="selected" value="1">100</option>
+	<option value="2">200</option>
+	<option value="3">300</option>
+	<option value="4">400</option>
+
+</select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group row mb-4">
+                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Upload Excel</label>
+                        <div class="col-sm-12 col-md-7">
+                            <div class="input-group">
+                                <input type="file" name="ctl00$ContentPlaceHolder1$FlUploadcsv" id="ContentPlaceHolder1_FlUploadcsv" class="form-control " />
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <a id="ContentPlaceHolder1_LinkButton2" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$LinkButton2&#39;,&#39;&#39;)"><i class="fas fa-upload text-success "></i></a>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <div>
+	<table class="table table-striped table-bordered c  table-hover weather-table" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_TableResult" style="font-size:10px;border-collapse:collapse;">
+		<tr>
+			<th class=" thead-default" scope="col" style="width:7%;">Delete Record</th><th scope="col" style="width:5%;">Edit Record</th><th class=" thead-default" scope="col" style="width:7%;"> Checked row(s)</th><th scope="col">RowNumber</th><th scope="col">RecID</th><th scope="col">Department</th><th scope="col">Session</th><th scope="col">Semester</th><th scope="col">Level</th><th scope="col">MatricNo</th><th scope="col">Student Names</th><th scope="col">Course Name</th><th scope="col">Course Code</th><th scope="col">Course Unit</th><th scope="col">Created Date</th><th scope="col">Created Time</th>
+		</tr><tr>
+			<td align="center">
+                                        <a id="ContentPlaceHolder1_TableResult_lbDelete_0" class="btn btn-sm btn-outline-danger" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$TableResult$ctl02$lbDelete&#39;,&#39;&#39;)" style="font-size:14px;">
+                                                    <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td><td align="center">
+                                        <a id="ContentPlaceHolder1_TableResult_lbSelect_0" class="btn btn-sm btn-outline-info" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$TableResult$ctl02$lbSelect&#39;,&#39;&#39;)" style="font-size:14px;">
+                                                    <i class="fa fa-edit " ></i>
+                                        </a>
+                                    </td><td align="center">
+                                        <span class="text-white "><input id="ContentPlaceHolder1_TableResult_chkResult_0" type="checkbox" name="ctl00$ContentPlaceHolder1$TableResult$ctl02$chkResult" /></span>
+                                    </td><td>1</td><td>1</td><td>Computer Science and Information Technology</td><td>2001/2002</td><td>1ST SEMESTER</td><td>100</td><td>VUG/CSC/18/1111</td><td>BB BB BB</td><td>1HHH</td><td>CSC198</td><td>2</td><td>4/4/2021 12:00:00 AM</td><td>04:20:47.8100000</td>
+		</tr>
+	</table>
+</div>
+
+                        <table id="ContentPlaceHolder1_dlPager" cellspacing="0" cellpadding="5" style="border-collapse:collapse;">
+	<tr>
+		<td>
+
+                                <nav class="pagination">
+                                    <ul class="pagination">
+                                        <li class="page-item ">
+                                            <a id="ContentPlaceHolder1_dlPager_lnkPageNo_0" class="aspNetDisabled page-link ">1</a>
+
+                                        </li>
+                                    </ul>
+                                </nav>
+
+                            </td>
+	</tr>
+</table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="DeleteAllRecord" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure that you want to delete all Record
+                </div>
+                <div class="modal-footer bg-whitesmoke br">
+                    <button onclick="__doPostBack('ctl00$ContentPlaceHolder1$delteall','')" id="ContentPlaceHolder1_delteall" type="button" class="btn btn-danger"><i class="fa fa-trash"></i>&nbsp Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="DeleteRecord" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabels"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabels">Delete Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span id="ContentPlaceHolder1_Label1" class="text-danger ">Label</span>
+                </div>
+                <div class="modal-footer bg-whitesmoke br">
+                    <button onclick="__doPostBack('ctl00$ContentPlaceHolder1$jjj','')" id="ContentPlaceHolder1_jjj" type="button" class="btn btn-danger"><i class="fa fa-trash"></i>&nbsp Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/ckeditor/ckeditor.js"></script>
+    <script>
+        function showDelete() {
+            $('#DeleteRecord').modal('show')
+        }
+    </script>
+
+                     
+                </div>
+                <footer class="main-footer">
+                  
+                 
+
+                    <div class=" footer-right">
+                         
+                        <a href="Veritas.edu.ng">Veritas University | Department of Computer Science and Information Technology</a>
+                    </div>
+                    <div class="footer-right">
+                    </div>
+                </footer>
+            </div>
+        </div>
+          <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabels"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabels">Log Out</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <span id="Label1" class="text-danger ">Are you sure that you want to log out?</span>
+              </div>
+              <div class="modal-footer bg-whitesmoke br">
+                <button onclick="__doPostBack('ctl00$ctl20','')" type="button" class="btn btn-danger"><i class=" fa fa-sign-out-alt"></i>&nbsp Logout</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- General JS Scripts -->
+        <script src="assets/js/app.min.js"></script>
+        <!-- JS Libraies -->
+        <script src="assets/bundles/datatables/datatables.min.js"></script>
+        <script src="assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+        <script src="assets/bundles/jquery-ui/jquery-ui.min.js"></script>
+        <!-- Page Specific JS File -->
+        <script src="assets/js/page/datatables.js"></script>
+        <!-- Template JS File -->
+        <script src="assets/js/scripts.js"></script>
+        <!-- Custom JS File -->
+        <script src="assets/js/custom.js"></script>
+        <!-- JS Libraies -->
+        <script src="assets/bundles/apexcharts/apexcharts.min.js"></script>
+        <script src="assets/bundles/summernote/summernote-bs4.js"></script>
+        <script src="assets/bundles/codemirror/lib/codemirror.js"></script>
+        <script src="assets/bundles/codemirror/mode/javascript/javascript.js"></script>
+        <script src="assets/bundles/jquery-selectric/jquery.selectric.min.js"></script>
+        <script src="assets/bundles/ckeditor/ckeditor.js"></script>
+        <script src="assets/bundles/prism/prism.js"></script>
+        <script src="ckeditor/ckeditor.js"></script>
+        <script src="assets/js/page/ckeditor.js"></script>
+        <script src="assets/counter.js"></script>
+        <script src="js/select2.min.js"></script>
+        <script src="assets/js/page/portfolio.js"></script>
+        <script src="floating-whatsapp-master/floating-wpp.js"></script>
+
+          <script type="text/javascript">
+            $(function () {
+                $('#WAButton').floatingWhatsApp({
+                    phone: '+2347031268439', //WhatsApp Business phone number
+                    headerTitle: 'Chat with us on our AI Chatbot!', //Popup Title
+                    popupMessage: 'Welcome to Veritas University Result Processing, how can we help you?', //Popup Message
+                    showPopup: true, //Enables popup display
+                    buttonImage: '<img src="img/VeritasPng.png" />', //Button Image
+                    headerColor: '#28a745', //Custom header color
+                    backgroundColor: 'transparent', //Custom background button color
+                    position: "left" //Position: left | right
+
+                });
+            });
+        </script>
+          <script>
+               function isNumber(evt, element) {
+
+                   var charCode = (evt.which) ? evt.which : event.keyCode
+
+                   if (
+                       (charCode != 45 || $(element).val().indexOf('-') != -1) &&      // “-” CHECK MINUS, AND ONLY ONE.
+                       (charCode != 46 || $(element).val().indexOf('.') != -1) &&      // “.” CHECK DOT, AND ONLY ONE.
+                       (charCode < 48 || charCode > 57))
+                       return false;
+
+                   return true;
+               }
+           </script>
+        <script type="text/javascript">
+            var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+
+            ( function () {
+                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                s1.async = true;
+                s1.src = 'https://embed.tawk.to/5e9cb58835bcbb0c9ab2b7ae/default';
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin', '*');
+                s0.parentNode.insertBefore(s1, s0);
+            })();
+        </script>
+    <script>
+        $('.decimal').keypress(function (event) {
+            return isNumber(event, this)
+        });
+    </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".select2").select2();
+                $('.c').DataTable({
+                    //dom: 'Bfrtip',
+                    //buttons: [
+                    //  'copy', 'csv', 'excel', 'pdf', 'print'
+                    //],
+                    "columnDefs": [
+          { "sortable": false, "targets": [2, 3] }
+                    ]
+                });
+            });
+        </script>
+        <script>
+            $('.counters').each(function () {
+                $(this).prop('Counter', 0).animate({
+                    Counter: $(this).text()
+                },
+            {
+                duration: 9500,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+            });
+        </script>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+            }
+        </script>
+
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <script src="assets/js/index.js"></script>
+        <!--Start of Tawk.to Script-->
+
+      
+
+    
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="A08A481E" />
+</div></form>
+
+<!-- Visual Studio Browser Link -->
+<script type="application/json" id="__browserLink_initializationData">
+    {"appName":"Chrome","requestId":"31cecdab7a174e29bf2755028ca047f5"}
+</script>
+<script type="text/javascript" src="http://localhost:1457/b6b9080f6d76458588449f6c5e058a1c/browserLink" async="async"></script>
+<!-- End Browser Link -->
+
+</body>
+</html>
